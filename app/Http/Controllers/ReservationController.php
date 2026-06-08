@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
+
 class ReservationController extends Controller
 {
     public function index()
@@ -14,7 +15,7 @@ class ReservationController extends Controller
     return view('reservations.index', compact('reservations'));
 }
 
- public function store(Request $request)
+public function store(Request $request)
 {
     $request->validate([
         'customer_name' => 'required',
@@ -32,7 +33,7 @@ class ReservationController extends Controller
         'reservation_time' => $request->reservation_time,
         'number_of_people' => $request->number_of_people,
         'note' => $request->note,
-        'status' => 'pending'
+        'status' => 'Wordt verwerkt!'
     ]);
         
 
