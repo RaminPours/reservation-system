@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
+    // Hier wordt de formulier verwerkt en de reserveringen weergegeven
     public function index()
 {
     $reservations = Reservation::latest()->get();
@@ -15,6 +16,7 @@ class ReservationController extends Controller
     return view('reservations.index', compact('reservations'));
 }
 
+// Hier wordt de reservering opgeslagen in de database
 public function store(Request $request)
 {
     $request->validate([
@@ -25,6 +27,7 @@ public function store(Request $request)
         'number_of_people' => 'required|integer|min:1',
     ]);
 
+    // Reservering opslaan in de database
     Reservation::create([
         'customer_name' => $request->customer_name,
         'email' => $request->email,
@@ -40,6 +43,7 @@ public function store(Request $request)
 } 
 
 
+// Hier wordt de reservering verwijderd uit de database
 public function destroy(Reservation $reservation)
 {
     $reservation->delete();
