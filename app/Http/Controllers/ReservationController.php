@@ -36,8 +36,14 @@ public function store(Request $request)
         'status' => 'Wordt verwerkt!'
     ]);
         
-
     return redirect()->route('reservations.index');
 } 
 
+
+public function destroy(Reservation $reservation)
+{
+    $reservation->delete();
+
+    return redirect()->route('reservations.index');
 }
+}   

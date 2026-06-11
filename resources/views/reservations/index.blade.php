@@ -4,22 +4,22 @@
     @csrf
     <h2>Maak een Reservering</h2>
     <label for="customer_name">Naam:</label>
-    <input type="text" id="customer_name" name="customer_name" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
+    <input type="text" id="customer_name" name="customer_name" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
 
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
+    <input type="email" id="email" name="email" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
 
     <label for="phone">Telefoon:</label>
-    <input type="text" id="phone" name="phone" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
+    <input type="text" id="phone" name="phone" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" ><br><br>
 
     <label for="reservation_date">Reservering Datum:</label>
-    <input type="date" id="reservation_date" name="reservation_date" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
+    <input type="date" id="reservation_date" name="reservation_date" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
 
     <label for="reservation_time">Reservering Tijd:</label>
-    <input type="time" id="reservation_time" name="reservation_time" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
+    <input type="time" id="reservation_time" name="reservation_time" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
 
     <label for="number_of_people">Aantal Personen:</label>
-    <input type="number" id="number_of_people" name="number_of_people" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
+    <input type="number" id="number_of_people" name="number_of_people" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required><br><br>
 
     <label for="note">Opmerking:</label>
     <textarea id="note" name="note" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea><br><br>
@@ -29,7 +29,7 @@
 
 <hr>
 
-<h2>Reserveringen Overzicht</h2>
+<h2>Reserveringen</h2>
 <table border="1" cellpadding="10" cellspacing="0">
     <thead>
         <tr>
@@ -42,6 +42,7 @@
             <th>Aantal Personen</th>
             <th>Opmerking</th>
             <th>Status</th>
+            <th>Verwijder</th>
         </tr>
     </thead>
     <tbody>
@@ -56,6 +57,13 @@
             <td>{{ $reservation->number_of_people }}</td>
             <td>{{ $reservation->note }}</td>
             <td>{{ $reservation->status }}</td>
+            <td>
+                <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" style="background-color: #f44336; color: white; padding: 5px 10px; border: none; cursor: pointer;">Verwijder</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
